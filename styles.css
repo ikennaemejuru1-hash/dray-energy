@@ -35,8 +35,12 @@ body a {
 }
 
 .navbar {
-  background: rgba(3, 10, 20, 0.92) !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1050;
+  background-color: rgba(255,255,255,0.04) !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -44,12 +48,25 @@ body a {
 .navbar-brand,
 .navbar-nav .nav-link {
   color: #f8fafc !important;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
   color: var(--accent-gold) !important;
+}
+
+.navbar .offcanvas {
+  background-color: rgba(255,255,255,0.04) !important;
+  color: #ffffff;
+}
+
+.navbar .offcanvas-title {
+  color: #ffffff;
+}
+
+.navbar .offcanvas .btn-close {
+  filter: invert(1);
 }
 
 .btn-quote {
@@ -185,22 +202,59 @@ h6 {
   color: #ffffff;
 }
 
-.stats-strip {
-  background: linear-gradient(135deg, rgba(7, 16, 30, 0.95), rgba(11, 22, 39, 0.95));
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.trust-section {
+  background: rgba(255,255,255,0.04);
+  padding: 4rem 1rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.stat-value {
-  font-size: 2rem;
+.trust-heading {
+  color: #f5a623;
+  margin-bottom: 1.5rem;
+}
+
+.trust-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.trust-list li {
+  color: #ffffff;
+  font-size: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.trust-check {
+  color: #f5a623;
   font-weight: 700;
-  color: var(--accent-gold);
+  margin-right: 0.75rem;
 }
 
-.stat-label {
-  color: var(--text-muted);
-  margin-top: 0.35rem;
-  font-size: 0.95rem;
+.trust-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.trust-stat-box {
+  background: rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.trust-stat-box strong {
+  color: #f5a623;
+  display: block;
+  font-size: 1.15rem;
+}
+
+.trust-stat-box span {
+  color: #ffffff;
+  display: block;
+  margin-top: 0.5rem;
 }
 
 .form-control,
@@ -264,6 +318,20 @@ footer a {
   color: var(--text-muted);
   font-weight: 600;
   line-height: 1.7;
+}
+
+.contact-info-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.contact-info-card p,
+.contact-info-card a {
+  color: #ffffff !important;
+}
+
+.contact-info-card a:hover {
+  text-decoration: underline !important;
 }
 
 @media (max-width: 767.98px) {
