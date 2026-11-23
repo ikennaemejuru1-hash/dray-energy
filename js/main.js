@@ -3,7 +3,25 @@
   var d = document;
   /* Hide-on-reveal styles apply only once this script is running */
   d.documentElement.classList.add("js");
+  /* Reveals first, so a failure in any later feature cannot leave content hidden */
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reveals = d.querySelectorAll(".reveal");
+  function showAll() { reveals.forEach(function (el) { el.classList.add("is-in"); }); }
+  try {
+    if (reduce || !("IntersectionObserver" in window)) {
+      showAll();
+    } else {
+      var ro = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add("is-in"); ro.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -5% 0px" });
+      reveals.forEach(function (el) { ro.observe(el); });
+    }
+  } catch (err) { showAll(); }
+  /* Last resort: if anything below throws, reveal everything */
+  window.addEventListener("error", showAll);
+
   var nav = d.getElementById("nav");
   var btn = d.getElementById("menu-btn");
   var menu = d.getElementById("menu");
@@ -39,19 +57,6 @@
     if (!ticking) { ticking = true; requestAnimationFrame(function () { parallax(); progress(); }); }
   }, { passive: true });
   window.addEventListener("resize", function () { parallax(); progress(); });
-
-  /* Reveals (one-time, staggered via --i) */
-  var reveals = d.querySelectorAll(".reveal");
-  if (reduce || !("IntersectionObserver" in window)) {
-    reveals.forEach(function (el) { el.classList.add("is-in"); });
-  } else {
-    var ro = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("is-in"); ro.unobserve(e.target); }
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -5% 0px" });
-    reveals.forEach(function (el) { ro.observe(el); });
-  }
 
   /* Counters run once. Final values are already in the HTML. */
   var counters = d.querySelectorAll("[data-count]");
