@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ikennaemejuru1-hash.github.io/dray-energy/sitemap.xml
