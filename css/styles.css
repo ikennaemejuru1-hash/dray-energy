@@ -103,6 +103,9 @@ a { color: inherit; }
 .lead { font-size: var(--step-1); max-width: 60ch; }
 .section--dark .lead, .section--surface .lead, .section--dark p, .section--surface p { color: var(--muted-dark); }
 .section--light p, .section--white p { color: var(--muted-light); }
+.section--dark p.eyebrow, .section--surface p.eyebrow { color: var(--amber); }
+.section--light p.eyebrow, .section--white p.eyebrow { color: var(--blue); }
+.section--light p.tagline, .section--white p.tagline { color: var(--ink); }
 .section-head { margin-bottom: clamp(2rem, 4vw, 3.5rem); }
 
 /* Nav */

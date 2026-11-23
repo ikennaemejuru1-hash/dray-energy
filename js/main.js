@@ -1,6 +1,8 @@
 (function () {
   "use strict";
   var d = document;
+  /* Hide-on-reveal styles apply only once this script is running */
+  d.documentElement.classList.add("js");
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var nav = d.getElementById("nav");
   var btn = d.getElementById("menu-btn");
@@ -98,6 +100,9 @@
     btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     menu.classList.toggle("is-open", open);
     d.body.style.overflow = open ? "hidden" : "";
+    Array.prototype.forEach.call(d.querySelectorAll("main, footer, .actionbar"), function (el) {
+      if (open) { el.setAttribute("inert", ""); } else { el.removeAttribute("inert"); }
+    });
     if (open) { lastFocus = d.activeElement; setTimeout(function () { menu.querySelector("a").focus(); }, 50); }
     else if (lastFocus) { lastFocus.focus(); lastFocus = null; }
   }
